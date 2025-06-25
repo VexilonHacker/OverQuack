@@ -1,4 +1,5 @@
 {
+    "DEFAULT_PAYLOAD" :  "payload.oqs",
     "BOARD" : {
         "controll_mode_pin": 5,
         "desc_controll_mode_pin" : "Setting GPIO pin that will change from keystroke mode to storage mode as example pin 2, 6, 10, 13...",

@@ -103,4 +103,8 @@ def main_code(Default_Payload):
     # Run Default_Payload, then start LED blinking and Wi-Fi AP
     asyncio.run(main_loop(led))
 
-main_code("payload.oqs")
+payload = config['DEFAULT_PAYLOAD']
+if not isinstance(config['DEFAULT_PAYLOAD'], str) or not payload:
+    payload = "payload.oqs"
+
+main_code(payload)

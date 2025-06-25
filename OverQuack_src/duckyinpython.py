@@ -279,7 +279,8 @@ def LoadJsonConf(json_file="config.json"):
             config = json.load(f)
 
     except (OSError, ValueError) as e:
-        print_with_color(f"ERR: {e}", RED)
+        print_with_color(f"ERR: {e}\nconfig = {config}", RED)
+        config['DEFAULT_PAYLOAD'] = "payload.oqs"
         config['BOARD'] = {}
         config['BOARD']['enable_auto_reload'] = False
         config['BOARD']['enable_auto_switch_mode'] = True
