@@ -1,0 +1,6 @@
+DELAY 1000
+GUI R
+DELAY 500
+STRINGLN powershell
+DELAY 1000
+STRINGLN echo "You've beeen pwened"
