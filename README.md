@@ -482,4 +482,15 @@ You can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to acce
 
 This project is based on and inspired by the work from the __[dbisu/pico-ducky](https://github.com/dbisu/pico-ducky)__. I would like to sincerely acknowledge and thank the original authors for their foundational work, which served as the basis for this project. The current code extends and enhances their implementation with additional advanced features.
 <br><br>
+## ⚠️ Disclaimer – Read This or Regret It
+This tool is for **educational and ethical use only**. Do **not** use it for illegal activities, unauthorized access. 
+
+The author is **not responsible** for any misuse, data loss, damage, or unexpected visits from law enforcement.
+
+Use it **wisely** — and only on systems you **own** or have **explicit, written permission** to test.
+
+💻 + 🧠 = ✅  
+💻 + 🦆 + 😈 = 🚓
+
+**Stay smart. Stay legal. Hack responsibly.**
 ![OverQuack LOGO](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/overquack_logo.png)
