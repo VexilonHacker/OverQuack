@@ -1,5 +1,5 @@
 # 🦆 OverQuack
-![Alt text](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/image.png?token=GHSAT0AAAAAADGIESQ474QFMIKUPDYHSES62C5HJMQ)
+![Alt text](https://github.com/VexilonHacker/OverQuack/blob/8e53a4e72deef4525c5bb20d7087e893b81223ac/assets/image.png)
 <div align="center">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/VexilonHacker/OverQuack">
   <img alt="GitHub license" src="https://img.shields.io/github/license/VexilonHacker/OverQuack">
