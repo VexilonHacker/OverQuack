@@ -39,7 +39,7 @@ You can setup your __OverQuack/RubberDucky__ device automaticly by running __"Ov
 ``` go 
 go run OverQuack_Installer.go
 ```
-![auto installation](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/auto_installation.gif?token=GHSAT0AAAAAADGIESQ5Y7Q6WW33LG7OYYVC2C5HJYA)
+![auto installation](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/auto_installation.gif)
 
 or setup it manually:
 
@@ -66,7 +66,7 @@ or setup it manually:
 
 6. Setup complete. __OverQuack__ is ready to use. Proceed with your tasks responsibly.
 
-![Manuall installation](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/manual_installation.gif?token=GHSAT0AAAAAADGIESQ5S4THAIXWHB5BSS4A2C5HKFQ)
+![Manuall installation](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/manual_installation.gif)
 
 ## ⚙️ configuration 
 you can configure __OverQuack__ completely from `config.json`: 
@@ -99,7 +99,7 @@ you can configure __OverQuack__ completely from `config.json`:
 By default, with `control_mode_pin` set to `GPIO 5`, connect a switch between GP5 and GND to toggle modes. 
 ‼️ __Without any connection, the device will start in Mass Storage mode for safety reasons :^]__
 <br><br>
-![Pico w connection](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/wow_NEW._neonpng.png?token=GHSAT0AAAAAADGIESQ5AOHXCKMVNVMM6U3S2C5HLIQ)
+![Pico w connection](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/overquack_connection.png)
 
 ### 🛜 Wireless HID Control & Remote Payload Delivery
 
@@ -113,7 +113,7 @@ This feature is supported **only** on the `Pico W` and `Pico 2 W`.
 
 #### 💡 Example:
 
-![Remote Control Demo](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/client.gif?token=GHSAT0AAAAAADGIESQ4RSQGABQRXP5GIE3U2C5HKUA)
+![Remote Control Demo](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/client.gif)
 
 ---
 
@@ -480,4 +480,4 @@ You can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to acce
 
 This project is based on and inspired by the work from the __[dbisu/pico-ducky](https://github.com/dbisu/pico-ducky)__. I would like to sincerely acknowledge and thank the original authors for their foundational work, which served as the basis for this project. The current code extends and enhances their implementation with additional advanced features.
 <br><br>
-![neon](logo1.png)
+![OverQuack LOGO](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/overquack_logo.png)
