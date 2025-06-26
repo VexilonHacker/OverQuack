@@ -1,5 +1,5 @@
 # 🦆 OverQuack
-![Alt text](/home/casper/OverQuack/assets/image.png)
+![Alt text](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/image.png?token=GHSAT0AAAAAADGIESQ474QFMIKUPDYHSES62C5HJMQ)
 <div align="center">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/VexilonHacker/OverQuack">
   <img alt="GitHub license" src="https://img.shields.io/github/license/VexilonHacker/OverQuack">
@@ -39,7 +39,7 @@ You can setup your __OverQuack/RubberDucky__ device automaticly by running __"Ov
 ``` go 
 go run OverQuack_Installer.go
 ```
-![auto installation](/home/casper/OverQuack/assets/auto_installation.gif)
+![auto installation](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/auto_installation.gif?token=GHSAT0AAAAAADGIESQ5Y7Q6WW33LG7OYYVC2C5HJYA)
 
 or setup it manually:
 
@@ -66,7 +66,7 @@ or setup it manually:
 
 6. Setup complete. __OverQuack__ is ready to use. Proceed with your tasks responsibly.
 
-![Manuall installation](/home/casper/OverQuack/assets/manual_installation.gif)
+![Manuall installation](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/manual_installation.gif?token=GHSAT0AAAAAADGIESQ5S4THAIXWHB5BSS4A2C5HKFQ)
 
 ## ⚙️ configuration 
 you can configure __OverQuack__ completely from `config.json`: 
@@ -99,7 +99,7 @@ you can configure __OverQuack__ completely from `config.json`:
 By default, with `control_mode_pin` set to `GPIO 5`, connect a switch between GP5 and GND to toggle modes. 
 ‼️ __Without any connection, the device will start in Mass Storage mode for safety reasons :^]__
 <br><br>
-![Pico w connection](/home/casper/OverQuack/assets/wow_NEW._neonpng.png)
+![Pico w connection](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/wow_NEW._neonpng.png?token=GHSAT0AAAAAADGIESQ5AOHXCKMVNVMM6U3S2C5HLIQ)
 
 ### 🛜 Wireless HID Control & Remote Payload Delivery
 
@@ -113,7 +113,7 @@ This feature is supported **only** on the `Pico W` and `Pico 2 W`.
 
 #### 💡 Example:
 
-![Remote Control Demo](/home/casper/OverQuack/assets/client.gif)
+![Remote Control Demo](https://raw.githubusercontent.com/VexilonHacker/OverQuack/refs/heads/main/assets/client.gif?token=GHSAT0AAAAAADGIESQ4RSQGABQRXP5GIE3U2C5HKUA)
 
 ---
 
