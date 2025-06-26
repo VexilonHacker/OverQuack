@@ -479,3 +479,5 @@ You can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to acce
 ## 🫡 Acknowledgments
 
 This project is based on and inspired by the work from the __[dbisu/pico-ducky](https://github.com/dbisu/pico-ducky)__. I would like to sincerely acknowledge and thank the original authors for their foundational work, which served as the basis for this project. The current code extends and enhances their implementation with additional advanced features.
+<br><br>
+![neon](logo1.png)
