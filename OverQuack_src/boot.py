@@ -57,4 +57,5 @@ else:
     storage.disable_usb_drive()
     print("Disabling USB drive, Starting Keystroke injection")
 
+storage.remount("/", readonly=False)
 

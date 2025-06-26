@@ -17,7 +17,7 @@ from time import sleep
 from digitalio import DigitalInOut
 import board
 import asyncio
-from duckyinpython import  getProgrammingStatus, print_with_color, runScript, BlinkLedPico, LoadJsonConf
+from duckyinpython import  getProgrammingStatus, runScript, BlinkLedPico, LoadJsonConf
 
 config = LoadJsonConf()
 

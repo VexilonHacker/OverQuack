@@ -1,11 +1,21 @@
 {
+    "DEFAULT_PAYLOAD" :  "payload.oqs",
+    "desc_DEFAULT_PAYLOAD": "default payload which going to start in startup",
     "BOARD" : {
-        "controll_mode_pin": 5
+        "controll_mode_pin": 5,
+        "desc_controll_mode_pin" : "Setting GPIO pin that will change from keystroke mode to storage mode as example pin 2, 6, 10, 13...",
+
+        "enable_auto_switch_mode" : true,
+        "desc_enable_auto_switch_mode" : "switch attack mode without  need to replug usb",
+
+        "enable_auto_reload" : false,
+        "desc_enable_auto_reload" : "when editing a file in PICO and saving it, it will auto reboot PICO"
     },
     "AP" : {
-        "ssid": "nice",
-        "password": "passw1234",
+        "ssid": "1984",
+        "password": "OverQuackItBrother1984",
         "channel": "RANDOM",
+        "desc_channel" : "You can set random channel  value by using RANDOM or specify channel value as int in range [1,13]",
         "ip_address": "10.10.5.1",
         "ports": [80, 8000, 8080]
     }

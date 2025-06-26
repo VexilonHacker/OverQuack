@@ -506,29 +506,6 @@ def replaceAll(line, enable_replace_vars=1, enable_replace_defines=1, enable_rep
 
     return line
 
-def random_output(line, randomized_output=numbers):
-    ls = line.split()
-
-    if len(ls) < 2 :
-        print(f"[DEBUG_RANDOMIZATION_SYNTAX_ERROR]: Empty Value for {ls[0]}")
-
-    else :
-        times = 0
-        try :
-            times = int(ls[1])
-            print(f'[DEBUG_RANDOMIZATION]: Writing "{ls[0]}" {times} times')
-        except ValueError :
-            print(f"[ERROR_RANDOMIZATION]: Value of \"{ls[0]}\" is not an INT: {ls[1]}")
-            return
-        except Exception as e :
-            print(f"[ERROR_RANDOMIZATION]: {e}")
-            return
-
-        rng = ""
-        for _ in range(times):
-            rng += choice(randomized_output)
-
-        sendString(rng)
 
 def extract_random_placeholders(text):
     """
@@ -638,7 +615,7 @@ def parseLine(line, script_lines):
 
     line = line.replace("$_RANDOM_INT", replaced_element_rng)
     line = replaceAll(line, 0, 1, 0)
-
+    # Mickey MOUSSA part
     # JIGGLE_MOUSE
     if line.startswith("JIGGLE_MOUSE"):
         jiggle_delay  = replaceAll(line[12:].strip())
@@ -789,17 +766,19 @@ def parseLine(line, script_lines):
     elif(line[0:5] == "DELAY"):
         delay = line[5:].strip()
         delay = replaceAll(delay)
+        delay = evaluateExpression(delay)
         print(f"[0_DELAY_DEBUG]: line={line}, delay={delay}")
 
         try:
             delay = int(delay) 
-            sleep(float(line[6:])/1000)
-        except ValueError:
-            print(f"[ANGRY_DEBUG]: Really BRO >:\ Entering This Value to DELAY: \"{delay}\" !!!!")
+            sleep(float(delay/1000))
+        except Exception as e:
+            print(f"[ANGRY_DEBUG]: Really BRO >:\ Entering This Value to DELAY: \"{delay}\"!!!!, error: {e}")
 
 
     elif line.startswith("STRINGLN_BLOCK") or line == "STRINGLN":             
         print_with_color("INSIDE_STRINGLN_BLOCK")
+        print_with_color(f"ALL VALUES IN STRINGLN_BLOCK: {BetterListOutput(script_lines.remaining())}")
         line = next(script_lines).strip()
         print_with_color(f'[LINE_BLOCK] {line}', YELLOW)
         line = replaceAll(line)
@@ -810,7 +789,7 @@ def parseLine(line, script_lines):
                 Enable_strip = 0 
                 line = next(script_lines)
                 continue
-            elif line.startswith("ENABLE_STRIP"):
+            elif line.startswith("DISABLE_STRIP"):
                 Enable_strip =  1 
                 line = next(script_lines).strip()
                 continue
@@ -1008,53 +987,38 @@ def parseLine(line, script_lines):
         script_lines, ret = IF(condition, script_lines).runIf()
         print_with_color(f"[IF_RETURNED_CODE]: {ret}", YELLOW)
 
-
-    # Random Values as example :
-    # RANDOM_LOWERCASE_LETTER 5 
-    # ouput : azxcd
-
-    elif line[0:23] == "RANDOM_LOWERCASE_LETTER":
-        random_output(line, letters)
-
-    elif line[0:23] == "RANDOM_UPPERCASE_LETTER":
-        random_output(line, letters.upper())
-
-    elif line[0:13] == "RANDOM_LETTER":
-        random_output(line, letters + letters.upper())
-
-    elif line[0:13] == "RANDOM_NUMBER":
-        random_output(line, numbers)
-
-    elif line[0:14] == "RANDOM_SPECIAL":
-        random_output(line ,specialChars)
-
-    elif line[0:11] == "RANDOM_CHAR":
-        random_output(line ,letters + letters.upper() + numbers + specialChars)
     
     # FUNCTION'S EXCUTION
     elif line in functions:
         updated_lines = []
-        inside_while_block = False
-        for func_line in functions[line]:
+        inside_while_block = 0
+        # DONT STOP WHEN YOU'RE TIERED!! STOP WHEN YOU'RE DONE 
+        # AND NEVER GIVE UP BECAUSE I BELIVE IN YOU
+        print_with_color(f"FUNCTION_NAME: {line}, Content: {BetterListOutput(functions[line])}", GREEN)
+        LINE_ITER = TrackIterator(functions[line])
+        print_with_color(f"1_[LINE_ITER_ITEAMS] ITERATOR_VALUES: {BetterListOutput(LINE_ITER.all_items())}", CYAN)
+
+        for index, func_line in enumerate(LINE_ITER):
+            print_with_color(f"[FUNC_LINE] line={index}, line={func_line}", GOLD)
+
             if func_line.startswith("WHILE"):
-                inside_while_block = True  # Start skipping lines
+                inside_while_block = 1  # Start skipping lines
                 updated_lines.append(func_line)
 
             elif func_line.startswith("END_WHILE"):
-                inside_while_block = False  # Stop skipping lines
                 updated_lines.append(func_line)
                 WHILE_FUNC = TrackIterator(updated_lines)
                 parseLine(updated_lines[0], WHILE_FUNC)
                 updated_lines = []  # Clear updated_lines after parsing
+                inside_while_block = 0  # Stop skipping lines
 
             elif inside_while_block:
                 updated_lines.append(func_line)
 
             elif not (func_line.startswith("END_WHILE") or func_line.startswith("WHILE")):
-                # print(f"[LINE_ITER_FUNC_LINE] {func_line}\n[functions[line]] {functions[line]}")
-                LINE_ITER = TrackIterator(functions[line])
-                # print(f"[LINE_ITER_REMANNING] {LINE_ITER.remaining()}")
                 parseLine(func_line, LINE_ITER)
+                print_with_color(f"[LINE_ITER_REMANNING] {BetterListOutput(LINE_ITER.remaining())}",BRIGHT_RED)
+
             gc.collect()
     else:
         runScriptLine(line) # THE GOAT
@@ -1091,88 +1055,91 @@ def runScript(duckyScriptPath):
             restart = False
             with open(duckyScriptPath, "r", encoding='utf-8') as f:
                 lines = f.readlines()
-                script_lines = TrackIterator(lines)
 
-                previousLines = []
-                for line in script_lines:
-                    line = line.strip()
-                    if not line:
+
+            script_lines = TrackIterator(lines)
+            previousLines = []
+            for line in script_lines:
+                line = line.strip()
+                if not line:
+                    continue
+
+                gc.collect()
+                free_memory = gc.mem_free()
+                allocated_memory = gc.mem_alloc()
+                print_with_color(f"free_memory: {free_memory}, allocated_memory: {allocated_memory}", SILVER)
+
+                print(f"[LINE] {line}")
+                
+                if line.startswith("SELECT_LAYOUT"):
+                    ls = line.split()
+                    if len(ls) < 2 :
+                        continue
+                    new_KeyboardLayout, new_Keycode = SelectLayout(ls[1])
+                    if new_KeyboardLayout and new_Keycode:
+                        KeyboardLayout = new_KeyboardLayout
+                        Keycode = new_Keycode
+                        layout = KeyboardLayout(kbd)
+
+
+                if line.startswith("REPEAT") :
+                    line = replaceAll(line)
+                    line = line.upper()
+
+                    while " =" in line or "= " in line:
+                        line = line.replace(" =", "=").replace("= ", "=")
+
+                    print(f"traited line : {line}")
+                    repeat_ls = line.split()
+                    print(f"repeat_ls: {repeat_ls}")
+
+                    if not (len(repeat_ls) >= 3 and "LINES=" in line and "TIMES=" in line):
+                        print("[ERRPR]")
                         continue
 
-                    gc.collect()
-                    free_memory = gc.mem_free()
-                    allocated_memory = gc.mem_alloc()
-                    print_with_color(f"free_memory: {free_memory}, allocated_memory: {allocated_memory}", SILVER)
+                    line_idx, time_idx = 0, 0
 
-                    print(f"[LINE] {line}")
+                    for index, value in enumerate(repeat_ls):
+                        value = value.replace(" ", "")
+                        if value.startswith("LINES="):
+                            line_idx = index
+                        elif value.startswith("TIMES="):
+                            time_idx = index
+            
+                    print(f"LINES index: {line_idx}, TIMES index: {time_idx}")
+                    if not line_idx or not time_idx:
+                        continue
+
                     
-                    if line.startswith("SELECT_LAYOUT"):
-                        ls = line.split()
-                        if len(ls) < 2 :
-                            continue
-                        new_KeyboardLayout, new_Keycode = SelectLayout(ls[1])
-                        if new_KeyboardLayout and new_Keycode:
-                            KeyboardLayout = new_KeyboardLayout
-                            Keycode = new_Keycode
-                            layout = KeyboardLayout(kbd)
+                    lines_value , times_value = 0, 0 
+                    try:
+                        lines_value = int(repeat_ls[line_idx].split("=")[1].strip())
+                        times_value = int(repeat_ls[time_idx].split("=")[1].strip())
+                    except ValueError:
+                        continue
+                    print("[STARTING_REPEATING]")
+                    for _ in range(times_value) :
+                        #repeat the last command
+                        for repeated_line in previousLines[-lines_value:]:
+                            parseLine(repeated_line, script_lines)
+                            sleep(float(defaultDelay) / 1000)
 
+                elif line.startswith("RESTART_PAYLOAD"):
+                    restart = True
+                    break
+                elif line.startswith("STOP_PAYLOAD"):
+                    restart = False
+                    break
+                else:
+                    parseLine(line, script_lines)
+                    previousLines.append(line)
 
-                    if line.startswith("REPEAT") :
-                        line = replaceAll(line)
-                        line = line.upper()
-
-                        while " =" in line or "= " in line:
-                            line = line.replace(" =", "=").replace("= ", "=")
-
-                        print(f"traited line : {line}")
-                        repeat_ls = line.split()
-                        print(f"repeat_ls: {repeat_ls}")
-
-                        if not (len(repeat_ls) >= 3 and "LINES=" in line and "TIMES=" in line):
-                            print("[ERRPR]")
-                            continue
-
-                        line_idx, time_idx = 0, 0
-
-                        for index, value in enumerate(repeat_ls):
-                            value = value.replace(" ", "")
-                            if value.startswith("LINES="):
-                                line_idx = index
-                            elif value.startswith("TIMES="):
-                                time_idx = index
-                
-                        print(f"LINES index: {line_idx}, TIMES index: {time_idx}")
-                        if not line_idx or not time_idx:
-                            continue
-
-                        
-                        lines_value , times_value = 0, 0 
-                        try:
-                            lines_value = int(repeat_ls[line_idx].split("=")[1].strip())
-                            times_value = int(repeat_ls[time_idx].split("=")[1].strip())
-                        except ValueError:
-                            continue
-                        print("[STARTING_REPEATING]")
-                        for _ in range(times_value) :
-                            #repeat the last command
-                            for repeated_line in previousLines[-lines_value:]:
-                                parseLine(repeated_line, script_lines)
-                                sleep(float(defaultDelay) / 1000)
-
-                    elif line.startswith("RESTART_PAYLOAD"):
-                        restart = True
-                        break
-                    elif line.startswith("STOP_PAYLOAD"):
-                        restart = False
-                        break
-                    else:
-                        parseLine(line, script_lines)
-                        previousLines.append(line)
-
-                    sleep(float(defaultDelay) / 1000)
+                sleep(float(defaultDelay) / 1000)
 
     except OSError :
-        print(f'Unable to open file "{duckyScriptPath}"')
+        print_with_color(f'Unable to open file "{duckyScriptPath}"', RED)
+    except Exception as error  : 
+        print_with_color(f"Error: {error}", RED)
 
     variables = {"$_RANDOM_MIN": 0, "$_RANDOM_MAX": 65535}
     defines = {}
