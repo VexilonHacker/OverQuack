@@ -35,7 +35,7 @@
 
 ## 📂 Getting Started
 You can setup your __OverQuack/RubberDucky__ device automaticly by running __"OverQuack_Installer"__:
-
+<br><br>__⚠️ note : This installer only support linux for now__
 ``` go 
 go run OverQuack_Installer.go
 ```
