@@ -100,6 +100,8 @@ By default, with `control_mode_pin` set to `GPIO 5`, connect a switch between GP
 ‼️ __Without any connection, the device will start in Mass Storage mode for safety reasons :^]__
 <br><br>
 ![Pico w connection](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/overquack_connection.png)
+- 🔁 No need to unplug the USB or manually replug the device after flipping the switch — simply toggle the switch, and OverQuack will automatically reboot into the selected mode.
+
 
 ### 🛜 Wireless HID Control & Remote Payload Delivery
 
