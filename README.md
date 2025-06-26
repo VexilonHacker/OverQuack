@@ -116,7 +116,7 @@ This feature is supported **only** on the `Pico W` and `Pico 2 W`.
 #### 💡 Example:
 
 ![Remote Control Demo](https://github.com/VexilonHacker/OverQuack/blob/9e5d14ed5526943a0438d4cbcb6acb65a6377a05/assets/client.gif)
-
+- __config.json__ should alwayes be in same dir of __OverQuack_client.go__
 ---
 
 ### ➕ Additional Features
