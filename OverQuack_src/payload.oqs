@@ -1,0 +1,92 @@
+/*
+======================================================
+    OverQuack Demo
+    Version: 2.0
+    Author: VexilonHacker
+    OS: Windows
+======================================================
+*/
+
+DEFINE @SHORT_DELAY 500
+DEFINE @LONG_DELAY 1500
+DEFAULT_DELAY 10
+
+VAR $counter = 1
+$username = "OverQuackUser"
+
+GUI r
+DELAY @SHORT_DELAY
+STRINGLN notepad
+DELAY @SHORT_DELAY
+GUI UPARROW
+delay @SHORT_DELAY
+
+
+STRINGLN_BLOCK
+WiFi OverQuack Dynamic Framework Context Profile:
+- Active Tracker Code: $_RANDOM_NUMBER:8
+- Hardware Identity Target Match: $_BSSID
+END_STRINGLN
+
+STRINGLN Hello $username, this is a demo of OverQuack!
+STRINGLN Your random session ID: $_RANDOM_NUMBER:12
+STRINGLN Your passkey lowercase letter: $_RANDOM_LOWERCASE_LETTER
+STRING Your secret special char: $_RANDOM_SPECIAL
+ENTER
+
+IF ($_CAPSLOCK_ON == 1)
+    STRINGLN Caps Lock is ON, turning it OFF for demo
+    CAPSLOCK
+ELSE
+    STRINGLN Caps Lock is OFF, leaving as is
+END_IF
+
+WHILE ($counter <= 3)
+    PRINT Loop iteration #$counter
+    STRINGLN Loop step $counter completed.
+    $counter = $counter + 1
+    DELAY @SHORT_DELAY
+END_WHILE
+
+
+
+MOUSE_SCROLL 3
+DELAY @SHORT_DELAY
+MOUSE_SCROLL -3
+
+
+FUNCTION showEndMessage()
+    PRINT [DEMO] Function executed.
+    STRING All demo features completed successfully!,
+    SPACE
+    SPACE
+    STRINGLN Press ENTER to close Notepad after banner printed...
+    ENTER
+END_FUNCTION
+
+showEndMessage()
+
+$_STRICT = 0
+DISABLE_STRIP
+STRINGLN_BLOCK
+                                                                                 /$$
+                                                                                | $$
+  /$$$$$$  /$$    /$$ /$$$$$$   /$$$$$$   /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$$| $$   /$$
+ /$$__  $$|  $$  /$$//$$__  $$ /$$__  $$ /$$__  $$| $$  | $$ |____  $$ /$$_____/| $$  /$$/
+| $$  \ $$ \  $$/$$/| $$$$$$$$| $$  \__/| $$  \ $$| $$  | $$  /$$$$$$$| $$      | $$$$$$/
+| $$  | $$  \  $$$/ | $$_____/| $$      | $$  | $$| $$  | $$ /$$__  $$| $$      | $$_  $$
+|  $$$$$$/   \  $/  |  $$$$$$$| $$      |  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$ \  $$
+ \______/     \_/    \_______/|__/       \____  $$ \______/  \_______/ \_______/|__/  \__/
+                                              | $$
+                                              | $$
+                                              |__/
+
+END_STRINGLN
+$_STRICT = 1
+
+$final_msg = Demo finished. Goodbye!
+STRINGLN $final_msg  press enter to exit
+ALT F4
+PRINT $final_msg
+
+

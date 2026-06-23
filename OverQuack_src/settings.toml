@@ -1,0 +1,2 @@
+CIRCUITPY_PYSTACK_SIZE = 6144 # 4x default pystack size '1536'
+CIRCUITPY_SKIP_SAFE_MODE_WAIT=1 # removing 1 second  added to the boot process, to disable replace '1' with '0' and for more informations read this pdf docs 'https://docs.circuitpython.org/_/downloads/en/stable/pdf/' page 5 subtitle '1.5.1 Behavio'

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>OverQuack IDE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{ url_for('static', filename='imgs/lg.png') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/editor/editor.main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <div id="topbar">
+    <div class="brand-title">
+      <img src="{{ url_for('static', filename='imgs/lg.png') }}" alt="OverQuack Logo" class="brand-logo">
+
+      OverQuack IDE
+    </div>
+    <div class="controls-wrapper">
+      <label title="Enable Vim keybindings (normal/insert mode)">
+        <input type="checkbox" id="vimToggle"> Vim mode
+      </label>
+      <label title="Show/hide minimap for quick navigation">
+        <input type="checkbox" id="minimapToggle" checked> Mini map
+      </label>
+      <label title="Automatically save your payload to browser storage">
+        <input type="checkbox" id="autoSaveToggle"> Auto-save
+      </label>
+      <span class="divider">|</span>
+      <button id="templatesBtn" title="Open template library to insert premade scripts">Templates</button>
+      <button id="snippetsBtn" title="Open snippet library for common code blocks">Snippets</button>
+      <button id="referenceBtn" title="Command reference">Reference</button>
+      <span class="divider">|</span>
+      <label title="Change editor color theme">
+        Theme
+        <select id="themeSelect">
+          <option value="vs">VS</option>
+          <option value="vs-dark">VS Dark</option>
+          <option value="hc-black">High Contrast (Dark)</option>
+        </select>
+      </label>
+      <span class="divider">|</span>
+      <button id="downloadBtn" title="Download current payload as a .oqs file">Download Payload</button>
+    </div>
+  </div>
+
+  <div id="tabs-bar">
+    <div id="tabs-container"></div>
+    <button id="new-file-btn" title="New tab">+</button>
+  </div>
+
+  <div id="main-container">
+    <div id="editor"></div>
+    <div id="resize-handle"></div>
+    <div class="side-panel" id="snippetsPanel">
+      <div class="panel-header">
+        <span>Snippet Library</span>
+        <button class="panel-close" id="closeSnippetsPanel">&times;</button>
+      </div>
+      <div class="panel-body">
+        <input type="text" class="search-bar" id="snippetSearch" placeholder="Filter snippets...">
+        <div id="snippetsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="statusbar">
+    <div id="ideMode" class="status-block">STANDARD MODE</div>
+    <div id="vimStatus"></div>
+    <div class="status-right-wrapper">
+      <div id="mouseCoordStatus" class="status-stat-item">Ln 1, Col 1</div>
+      <span class="status-sub-divider">|</span>
+      <div id="lineCountStatus" class="status-stat-item">Lines: 0</div>
+      <span class="status-sub-divider">|</span>
+      <div id="varCountStatus" class="status-stat-item">Variables: 0</div>
+      <span class="status-sub-divider">|</span>
+      <div id="constCountStatus" class="status-stat-item">Constants: 0</div>
+      <span class="status-sub-divider">|</span>
+      <div id="runTimeStatus" class="status-stat-item">Est. Run Time: 0.0s</div>
+      <span class="status-sub-divider">|</span>
+      <div id="validationStatus" class="valid-state status-stat-item">● Syntax Valid</div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="templateModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="templateModalTitle">Template Library</span>
+        <button class="modal-close" id="closeTemplateModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="search-bar" id="templateSearch" placeholder="Search templates...">
+        <div class="item-list" id="templatesList"></div>
+        <div id="templatePreview" class="template-code-preview" style="display:none;"></div>
+        <div id="templatePreviewActions" class="template-actions" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="referenceModal">
+    <div class="modal-content" style="width: 600px;">
+      <div class="modal-header">
+        <span id="referenceModalTitle">Command Reference</span>
+        <button class="modal-close" id="closeReferenceModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="search-bar" id="referenceSearch" placeholder="Filter commands...">
+        <div id="referenceListView" class="item-list" style="max-height: 400px; overflow-y: auto;"></div>
+        <div id="referenceDetailView" style="display:none;">
+          <div id="referenceDetailName" style="font-weight:bold;font-size:16px;margin-bottom:10px;"></div>
+          <div id="referenceDetailDesc" style="color:#aaa;margin-bottom:10px;"></div>
+          <div id="referenceDetailExample" class="template-code-preview" style="height: 300px; margin-bottom: 15px;">
+          </div>
+          <div class="template-actions" id="referenceDetailActions"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="drop-overlay" class="drop-overlay">
+    <div class="drop-content">Drop payload (.oqs, .txt, .dd, .duck)</div>
+  </div>
+
+  <script>
+    window.dedent = function (str) {
+      const lines = str.split('\n');
+      let minIndent = Infinity;
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        const indent = line.match(/^(\s*)/)[1].length;
+        minIndent = Math.min(minIndent, indent);
+      }
+      if (minIndent === Infinity || minIndent === 0) return str;
+      return lines.map(line => line.slice(minIndent)).join('\n');
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+  <script src="{{ url_for('static', filename='js/templates.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/snippets.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/reference.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/ide.js') }}"></script>
+  <script>
+    (function () {
+      const resizeHandle = document.getElementById('resize-handle');
+      if (resizeHandle) resizeHandle.title = 'Drag to resize snippet panel';
+      const themeSelect = document.getElementById('themeSelect');
+      if (themeSelect) themeSelect.title = 'Change the editor color theme';
+    })();
+  </script>
+</body>
+
+</html>
