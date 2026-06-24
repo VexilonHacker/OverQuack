@@ -2,13 +2,6 @@
   <img src="./assets/OverQuack_Icons/vertical_fina_icon.png" alt="OverQuack Logo" />
 </p>
 
-
-
-<p align="center">
-  🌐 <strong>Live Web Studio Demo:</strong>
-  <a href="https://oqs.pythonanywhere.com/">oqs.pythonanywhere.com</a>
-</p>
-
 <p align="center">
   <a href="#features-at-a-glance"><strong>✨ Features</strong></a> •
   <a href="#cross-platform-demos"><strong>🖥️ Demos</strong></a> •
