@@ -11,11 +11,12 @@ This document explains the inner workings of OverQuack for **power‑users, deve
 ## 📖 Table of Contents
 
 - [ATTACKMODE and NVM Resume](#attackmode-and-nvm-resume)
-- [USB Mode Switching (Pin and Auto-Reboot)](#usb-mode-switching-pin-and-auto-reboot)
+- [USB Mode Switching (Pin and Auto-Reboot)](#usb-mode)
+
 - [TCP Protocol Reference (Wire Format)](#tcp-protocol-reference-wire-format)
 - [Interpreter Internals (overquackifypy)](#interpreter-internals-overquackifypy)
 - [Memory and Performance Tuning](#memory-and-performance-tuning)
-- [Keyboard Layouts, How They Work and How to Add One](#keyboard-layouts-how-they-work-and-how-to-add-one)
+- [Keyboard Layouts, How They Work and How to Add One](#keyboard-layouts)
 - [USB Identification and Spoofing](#usb-identification-and-spoofing)
 - [Known Limitations and Edge Cases](#known-limitations-and-edge-cases)
 - [Future Technical Roadmap](#future-technical-roadmap)
@@ -84,6 +85,7 @@ If you suspect stale NVM data is causing a boot loop, you can clear it from the 
 
 ---
 
+<a id="usb-mode"></a>
 ## USB Mode Switching (Pin and Auto‑Reboot)
 
 The physical GPIO pin defined in `config.json` (`BOARD.controll_mode_pin`, default GP5) determines whether the Pico acts as a **mass storage device** or a **stealth HID device**.
@@ -211,6 +213,7 @@ The TCP server **requires** a `FREE_MEM` call before accepting `WRITE`. This let
 
 ---
 
+<a id="keyboard-layouts"></a>
 ## Keyboard Layouts – How They Work and How to Add One
 
 ### Built‑in Layout Support

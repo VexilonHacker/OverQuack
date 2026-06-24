@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="#features-at-a-glance"><strong>✨ Features</strong></a> •
-  <a href="#-cross-platform-demos"><strong>🖥️ Demos</strong></a> •
+  <a href="#cross-platform-demos"><strong>🖥️ Demos</strong></a> •
   <a href="#quick-start"><strong>🏁 Quick Start</strong></a> •
   <a href="#configuration"><strong>⚙️ Config</strong></a> •
   <a href="#wireless-tcp-control"><strong>🌐 Wireless</strong></a> •
@@ -16,6 +16,7 @@
   <a href="#the-overquack-scripting-language-oqs"><strong>📜 Language</strong></a> •
   <a href="#roadmap"><strong>🗺️ Roadmap</strong></a>
 </p>
+
 
 ## 🤔 Why OverQuack?
 
@@ -40,7 +41,9 @@ It brings together local payload execution, wireless management, a modern web ID
 > **OverQuack** combines the flexibility of DIY hardware with a polished workflow: scripting, wireless control, a browser-based IDE, simple installation, and configurable USB behavior in one compact platform. It is designed for people who value transparency, customization, and a modern development experience.
 
 ---
+<a id="features-at-a-glance"></a>
 ## ✨ Features at a Glance
+
 - 🧠 **Full DuckyScript extension**  variables, conditionals, loops, functions, math, randomisation
 - 📡 **Wireless control**  built-in Wi-Fi access point and TCP server, deploy and trigger payloads remotely
 - 🔌 **Plug and play HID injection**  keyboard, mouse, consumer controls (media keys). no drivers needed
@@ -54,7 +57,8 @@ It brings together local payload execution, wireless management, a modern web ID
 - 🖥️ **Web-based IDE**  Monaco editor with syntax highlighting, live validation, templates and snippets
 ---
 
-## 🖥️ Cross‑Platform Demos
+<a id="cross-platform-demos"></a>
+## 🖥️ Cross-Platform Demos
 
 <p align="center">
   <strong>One tiny Pico adapts to any operating system.</strong><br/>
@@ -156,8 +160,8 @@ Overquack/
 
 ---
 
+<a id="quick-start"></a>
 ## 🏁 Quick Start
-
 ### Automatic Installation (recommended)
 
 Run the cross-platform installer:
@@ -214,6 +218,7 @@ Then follow the interactive wizard. it will guide you through board selection, f
 
 ---
 
+<a id="configuration"></a>
 ## ⚙️ Configuration
 
 All device settings live in **`config.json`** on the `CIRCUITPY/OVERQUACK` drive. You can edit it directly while the Pico is in storage mode.
@@ -275,7 +280,6 @@ By default, the GPIO pin **`controll_mode_pin`** (GP5 in the example) determines
 ---
 
 <a id="wireless-tcp-control"></a>
-
 ## 🌐 Wireless TCP Control (Pico W / Pico 2 W)
 
 **OverQuack** starts a Wi-Fi access point and a TCP server on port `1084`. You can control the device remotely using the **OverQuack Client**.
@@ -314,6 +318,7 @@ The client also provides an interactive shell with auto-connection, history, and
 
 ---
 
+<a id="web-studio-ide"></a>
 ## 🖥️ Web Studio IDE
 
 A full-fledged **browser-based development environment** for writing OverQuack scripts.
@@ -348,6 +353,7 @@ Then open `http://localhost:1084` in your browser.
 
 ---
 
+<a id="the-overquack-scripting-language-oqs"></a>
 ## 📜 The OverQuack Scripting Language (OQS)
 
 OverQuack supports a **superset of DuckyScript** with full programming capabilities, variables, functions, loops, mouse control, randomisation, and more.
@@ -401,12 +407,13 @@ x=0; while true; do [[ -e /dev/ttyACM0 ]] && picocom -b 9600 /dev/ttyACM0; ((++x
 All `PRINT` messages are color-coded for easy reading.
 
 ---
-
+<a id="roadmap"></a>
 ## 🗺️ roadmap
 - [ ] **Bluetooth (BLE) control:** for Pico W and Pico 2 W
 - [ ] **Encrypted TCP protocol:** for over-the-air security
 - [ ] **Payload encryption on device**
 - [ ] **Add arguments support in FUNCTION**
+- [ ]  **Add Os detection variable**
 - [ ] **File exfiltration via Caps Lock/Num Lock/Scroll Lock Reflection:** useful for air-gap systems [Original idea source](https://shop.hak5.org/blogs/usb-rubber-ducky/keystroke-reflection)
 - [ ] **Pico boards as Keyboard middleman:** log keystrokes between USB keyboard and host using new circuitpython 10.2 CDC support
 - [ ] **IDE improvements:** more validation rules, built-in serial monitor and binding OverquackWebStudio with OverQuack TCP client
