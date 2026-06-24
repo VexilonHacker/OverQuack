@@ -60,26 +60,21 @@ It brings together local payload execution, wireless management, a modern web ID
 <a id="cross-platform-demos"></a>
 ## 🖥️ Cross-Platform Demos
 
-<p align="center">
-  <strong>One tiny Pico adapts to any operating system.</strong><br/>
-  <em>Platform‑specific payloads running on Windows, macOS, Linux and Android.</em>
-</p>
-
-<table align="center">
+<table align="center" style="width:100%; border-collapse:collapse;">
   <tr>
-    <td align="center"><strong>🪟 Windows</strong></td>
-    <td align="center"><strong>🍏 macOS</strong></td>
+    <td align="center" style="width:50%;"><strong>🪟 Windows</strong></td>
+    <td align="center" style="width:50%;"><strong>🍏 macOS</strong></td>
   </tr>
   <tr>
     <td align="center">
       <a href="./assets/OverQuack_Gifs/OverQuack_Win.gif" title="View full size">
-        <img src="./assets/OverQuack_Gifs/OverQuack_Win.gif" alt="OverQuack on Windows" width="450" />
+        <img src="./assets/OverQuack_Gifs/OverQuack_Win.gif" alt="OverQuack on Windows" style="width:100%; max-width:400px; height:auto;" />
       </a>
       <br><sub><strong>Windows 10: classic Notepad payload</strong></sub>
     </td>
     <td align="center">
       <a href="./assets/OverQuack_Gifs/OverQuack_MacOs.gif" title="View full size">
-        <img src="./assets/OverQuack_Gifs/OverQuack_MacOs.gif" alt="OverQuack on macOS" width="450" />
+        <img src="./assets/OverQuack_Gifs/OverQuack_MacOs.gif" alt="OverQuack on macOS" style="width:100%; max-width:400px; height:auto;" />
       </a>
       <br><sub><strong>macOS: Opening a Rick Roll in safari browser</strong></sub>
     </td>
@@ -91,13 +86,13 @@ It brings together local payload execution, wireless management, a modern web ID
   <tr>
     <td align="center">
       <a href="./assets/OverQuack_Gifs/OverQuack_Linux.gif" title="View full size">
-        <img src="./assets/OverQuack_Gifs/OverQuack_Linux.gif" alt="OverQuack on Linux" width="450" />
+        <img src="./assets/OverQuack_Gifs/OverQuack_Linux.gif" alt="OverQuack on Linux" style="width:100%; max-width:400px; height:auto;" />
       </a>
       <br><sub><strong>Arch Linux (bspwm): >:^]</strong></sub>
     </td>
     <td align="center">
       <a href="./assets/OverQuack_Gifs/OverQuack_Android.gif" title="View full size">
-        <img src="./assets/OverQuack_Gifs/OverQuack_Android.gif" alt="OverQuack on Android" width="450" />
+        <img src="./assets/OverQuack_Gifs/OverQuack_Android.gif" alt="OverQuack on Android" style="width:100%; max-width:400px; height:auto;" />
       </a>
       <br><sub><strong>Android (OTG): Opening a Rick Roll in brave browser</strong></sub>
     </td>
