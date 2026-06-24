@@ -2,8 +2,11 @@
   <img src="./assets/OverQuack_Icons/vertical_fina_icon.png" alt="OverQuack Logo" />
 </p>
 
+
+
 <p align="center">
-  <strong>OverQuack</strong> is an open-source, Raspberry Pi Pico-based platform for building and running scripted HID workflows. It combines a custom scripting language, wireless remote control, and a browser-based development environment in one compact project.
+  🌐 <strong>Live Web Studio Demo:</strong>
+  <a href="https://oqs.pythonanywhere.com/">oqs.pythonanywhere.com</a>
 </p>
 
 <p align="center">
@@ -335,7 +338,9 @@ python OverquackWebStudio.py
 Then open `http://localhost:1084` in your browser.
 
 ![d](./assets/OverQuackWebStudio.png) 
+> 🌐 **Try it online:** [oqs.pythonanywhere.com](https://oqs.pythonanywhere.com/) 
 ### IDE Highlights
+
 - **Monaco editor** with full Ducky-Script language definition
 - **Syntax highlighting** and intelligent autocompletion (commands, variables, system vars, layouts)
 - **Live error checking :** unknown tokens, unclosed blocks, unused variables/functions
