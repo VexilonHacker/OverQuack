@@ -451,5 +451,5 @@ Use it **wisely** and only on systems you **own** or have **explicit, written pe
 
 **Stay smart. Stay legal. Hack responsibly.**
 
-![OverQuack Logo](./assets/OverQuack_MidNight.png)
+![OverQuack Logo](./assets/OverQuack_MidNight.jpg)
 
